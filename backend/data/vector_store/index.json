@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "embedding": "deterministic-lexical-v1",
+  "chunk_size": 480,
+  "overlap": 60,
+  "passages": [
+    {
+      "document": "community_standards.md",
+      "tenant": "shagara",
+      "access": "members",
+      "text": "# shagara Community Standards",
+      "section": "General",
+      "page": 1,
+      "id": "a85314e67f62"
+    },
+    {
+      "document": "community_standards.md",
+      "tenant": "shagara",
+      "access": "members",
+      "text": "## Harvest sharing Community beds are harvested on Saturday mornings. Members may take one third of ripe produce and should log the harvest weight in the shared sheet.",
+      "section": "Harvest sharing",
+      "page": 1,
+      "id": "848f9c03fd4c"
+    },
+    {
+      "document": "community_standards.md",
+      "tenant": "shagara",
+      "access": "members",
+      "text": "## Compost safety Only untreated plant scraps are accepted. Meat, dairy, glossy paper, and diseased plants must stay out of the compost bins.",
+      "section": "Compost safety",
+      "page": 1,
+      "id": "1378039c5a8c"
+    },
+    {
+      "document": "irrigation_playbook.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "# shagara Irrigation Playbook",
+      "section": "General",
+      "page": 1,
+      "id": "bd22076e306d"
+    },
+    {
+      "document": "irrigation_playbook.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Drip schedule For a 20 litre container, start with 600 to 800 ml every morning. Increase the volume by 20 percent during heatwaves and reduce it after cloudy days. Always check the top 2 cm of soil before repeating a cycle.",
+      "section": "Drip schedule",
+      "page": 1,
+      "id": "a4e17236b1ac"
+    },
+    {
+      "document": "irrigation_playbook.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Water quality If tap water leaves a white crust, rest it overnight and flush the container with clean water once a month. Never allow a saucer to stay full because stagnant water suffocates roots.",
+      "section": "Water quality",
+      "page": 1,
+      "id": "896c0dad3d8e"
+    },
+    {
+      "document": "other_workspace.md",
+      "tenant": "othergarden",
+      "access": "all",
+      "text": "# OtherGarden Safety Note OtherGarden documents belong to a separate workspace and must never appear in shagara results.",
+      "section": "General",
+      "page": 1,
+      "id": "17e35571a7e2"
+    },
+    {
+      "document": "pest_field_notes.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "# shagara Pest Field Notes",
+      "section": "General",
+      "page": 1,
+      "id": "c76a02b36744"
+    },
+    {
+      "document": "pest_field_notes.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Aphids Aphids cluster on soft new growth. Isolate the pot, rinse the undersides of leaves, then repeat every three days for two weeks. Neem spray should be applied after sunset and tested on one leaf first.",
+      "section": "Aphids",
+      "page": 1,
+      "id": "40138b6cc8a3"
+    },
+    {
+      "document": "pest_field_notes.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Powdery mildew Remove damaged leaves and increase spacing between plants. Water the soil in the morning rather than wetting foliage. Do not compost infected leaves.",
+      "section": "Powdery mildew",
+      "page": 1,
+      "id": "4106325be166"
+    },
+    {
+      "document": "rooftop_growing.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "# shagara Rooftop Growing Guide",
+      "section": "General",
+      "page": 1,
+      "id": "da1093d66fd7"
+    },
+    {
+      "document": "rooftop_growing.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Basil in Cairo Basil performs best with 6 to 8 hours of bright light and airflow around the leaves. Keep the growing medium evenly moist, but let the top 2 cm dry before watering again. Harvest the top leaves weekly to encourage branching.",
+      "section": "Basil in Cairo",
+      "page": 1,
+      "id": "6bd90fa69cb8"
+    },
+    {
+      "document": "rooftop_growing.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Summer heat During July and August, move containers away from reflective walls and use a 30 percent shade cloth between 11am and 3pm. Morning irrigation reduces evaporation and leaf stress.",
+      "section": "Summer heat",
+      "page": 1,
+      "id": "c7412765ecd7"
+    },
+    {
+      "document": "test_upload.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "# Test",
+      "section": "Uploaded document",
+      "page": 1,
+      "id": "fd793e01ba67"
+    },
+    {
+      "document": "test_upload.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Note Basil needs sunlight.",
+      "section": "Note",
+      "page": 1,
+      "id": "c69502bcc4c9"
+    }
+  ]
+}

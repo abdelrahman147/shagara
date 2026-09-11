@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.log
+frontend/node_modules/
+frontend/dist/
+
+tmp_brief.txt
+brief-*.png
+reference_brief-*.png
+*.local
+frontend/untoouched refrence/
+*.pdf
+_all_cells.py

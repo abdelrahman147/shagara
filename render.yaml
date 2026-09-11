@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: SHAGARA-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: OLLAMA_URL
+        sync: false
+      - key: OLLAMA_MODEL
+        value: llama3.2:3b
+      - key: API_CORS_ORIGINS
+        sync: false
+
+
