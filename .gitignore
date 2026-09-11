@@ -9,7 +9,7 @@ backend/backend/
 backend/rag_demo_data/test_upload.md
 
 frontend/node_modules/
-frontend/dist/
+
 
 tmp_brief.txt
 brief-*.png

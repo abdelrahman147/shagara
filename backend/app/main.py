@@ -17,12 +17,31 @@ async def lifespan(_: FastAPI):
 app = FastAPI(title="shagara RAG API", version="1.0.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=API_CORS_ORIGINS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
+from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
+
+ROOT = Path(__file__).resolve().parent.parent.parent
+DIST_DIR = ROOT / "frontend" / "dist"
+INDEX_HTML = DIST_DIR / "index.html"
+
+if (DIST_DIR / "assets").exists():
+    app.mount("/assets", StaticFiles(directory=str(DIST_DIR / "assets")), name="assets")
+
 router = APIRouter()
+
+
+@router.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
+async def root_endpoint():
+    if INDEX_HTML.exists():
+        return HTMLResponse(INDEX_HTML.read_text(encoding="utf-8"))
+    return HTMLResponse("<!doctype html><html><body><h1>shagara</h1></body></html>")
 
 
 @router.get("/health")
 async def health() -> dict[str, str]:
     return {"status": "ok", "service": "shagara-rag"}
+
 
 
 @router.post("/query", response_model=QueryResponse)

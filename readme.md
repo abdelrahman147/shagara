@@ -1,6 +1,6 @@
 <div align="center">
 
-# shagara
+# [shagara.shop](https://shagara.shop) • [shagara-b6il.vercel.app](https://shagara-b6il.vercel.app/)
 
 ### cairo's rooftop botanical intelligence and grounded document assistant
 
@@ -18,9 +18,14 @@ an end-to-end rag-powered botanical knowledge and urban agriculture system
 
 <br/><br/>
 
+### live production deployments
+
+[**🌿 shagara.shop**](https://shagara.shop) • [**⚡ shagara-b6il.vercel.app**](https://shagara-b6il.vercel.app/)
+
 ### fast access
 
-[**▶ watch video**](docs/0911.mp4) • [**1 explore the notebook**](notebooks/rag_pipeline.ipynb) • [**2 inspect the vector index**](backend/data/vector_store/index.json) • [**3 launch the website**](https://shagara.shop)
+[**▶ watch video**](docs/0911.mp4) • [**1 explore the notebook**](notebooks/rag_pipeline.ipynb) • [**2 inspect the vector index**](backend/data/vector_store/index.json) • [**3 launch live app**](https://shagara.shop)
+
 
 [api documentation](https://shagara.shop/docs) • [presentation deck](docs/shagara_presentation.pptx)
 

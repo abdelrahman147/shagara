@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">SHAGARA Rooftop Garden Intelligence architecture</title>
+  <desc id="desc">Flowchart showing document ingestion and online question answering with retrieval augmented generation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#081322"/><stop offset="1" stop-color="#101c31"/></linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#11d8d0"/><stop offset="1" stop-color="#4ca7ff"/></linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9b7bff"/><stop offset="1" stop-color="#e172ff"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffc36b"/><stop offset="1" stop-color="#ff7b7b"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".35"/></filter>
+    <marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12z" fill="#52d9e7"/></marker>
+    <marker id="arrowViolet" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12z" fill="#b095ff"/></marker>
+    <style>
+      .title{font:700 42px Inter,Segoe UI,sans-serif;fill:#f5f8ff;letter-spacing:.5px}.sub{font:400 20px Inter,Segoe UI,sans-serif;fill:#91a4c2}.lane{font:700 17px Inter,Segoe UI,sans-serif;fill:#d6e5ff;letter-spacing:2px}.node-title{font:700 20px Inter,Segoe UI,sans-serif;fill:#f4f8ff}.node-body{font:400 15px Inter,Segoe UI,sans-serif;fill:#aebfd9}.small{font:600 14px Inter,Segoe UI,sans-serif;fill:#b8c9e4}.pill{font:700 13px Inter,Segoe UI,sans-serif;fill:#081322;letter-spacing:1px}.tech{font:700 16px Inter,Segoe UI,sans-serif;fill:#dce8ff}.tech-sub{font:400 14px Inter,Segoe UI,sans-serif;fill:#8fa6c5}
+    </style>
+  </defs>
+  <rect width="1800" height="1200" fill="url(#bg)"/>
+  <circle cx="1610" cy="70" r="260" fill="#1a3b66" opacity=".16"/><circle cx="190" cy="1080" r="260" fill="#3d1f70" opacity=".14"/>
+  <text x="90" y="78" class="title">SHAGARA <tspan fill="#6ce5df">/</tspan> AI SYSTEM FLOW</text>
+  <text x="90" y="116" class="sub">Rooftop Garden Intelligence · grounded answers from your own notes</text>
+  <rect x="1450" y="55" width="250" height="48" rx="24" fill="#112b3c" stroke="#2b6878"/><circle cx="1479" cy="79" r="7" fill="#54e0b5"/><text x="1500" y="85" class="small" fill="#c9f8e5">PRODUCTION BLUEPRINT</text>
+
+  <rect x="70" y="160" width="1660" height="400" rx="26" fill="#0c1a2b" stroke="#1c3854" stroke-width="2"/>
+  <rect x="70" y="160" width="1660" height="58" rx="26" fill="#11263c"/><rect x="70" y="192" width="1660" height="26" fill="#11263c"/>
+  <circle cx="105" cy="189" r="8" fill="#55d8d7"/><text x="130" y="196" class="lane">01  OFFLINE INGESTION · RUN WHEN DOCUMENTS CHANGE</text>
+
+  <g filter="url(#shadow)">
+    <rect x="105" y="275" width="245" height="185" rx="18" fill="#11243a" stroke="#2c7f91" stroke-width="2"/><rect x="105" y="275" width="245" height="7" rx="4" fill="url(#cyan)"/>
+    <text x="130" y="325" class="node-title">Garden documents</text><text x="130" y="355" class="node-body">PDF · Markdown · TXT</text><text x="130" y="382" class="node-body">Upload from the UI or corpus</text><rect x="130" y="410" width="125" height="28" rx="14" fill="#53d8da"/><text x="146" y="429" class="pill">SOURCE DATA</text>
+    <rect x="410" y="275" width="245" height="185" rx="18" fill="#11243a" stroke="#2c7f91" stroke-width="2"/><rect x="410" y="275" width="245" height="7" rx="4" fill="url(#cyan)"/>
+    <text x="435" y="325" class="node-title">Validate + parse</text><text x="435" y="355" class="node-body">SHA-256 checksum</text><text x="435" y="382" class="node-body">PDF text extraction + cleanup</text><rect x="435" y="410" width="125" height="28" rx="14" fill="#53d8da"/><text x="451" y="429" class="pill">FASTAPI</text>
+    <rect x="715" y="275" width="245" height="185" rx="18" fill="#11243a" stroke="#2c7f91" stroke-width="2"/><rect x="715" y="275" width="245" height="7" rx="4" fill="url(#cyan)"/>
+    <text x="740" y="325" class="node-title">Clean + chunk</text><text x="740" y="355" class="node-body">Keep page + section metadata</text><text x="740" y="382" class="node-body">480 characters · 60 overlap</text><rect x="740" y="410" width="145" height="28" rx="14" fill="#53d8da"/><text x="756" y="429" class="pill">RAG PREP</text>
+    <rect x="1020" y="275" width="245" height="185" rx="18" fill="#11243a" stroke="#6650ae" stroke-width="2"/><rect x="1020" y="275" width="245" height="7" rx="4" fill="url(#violet)"/>
+    <text x="1045" y="325" class="node-title">Create embeddings</text><text x="1045" y="355" class="node-body">Deterministic vectors now</text><text x="1045" y="382" class="node-body">SentenceTransformer ready</text><rect x="1045" y="410" width="145" height="28" rx="14" fill="#b59bff"/><text x="1061" y="429" class="pill">AI REPRESENTATION</text>
+    <rect x="1330" y="275" width="325" height="185" rx="18" fill="#11243a" stroke="#6650ae" stroke-width="2"/><rect x="1330" y="275" width="325" height="7" rx="4" fill="url(#violet)"/>
+    <text x="1355" y="325" class="node-title">Persisted vector index</text><text x="1355" y="355" class="node-body">backend/data/vector_store/index.json</text><text x="1355" y="382" class="node-body">Loaded once when FastAPI starts</text><rect x="1355" y="410" width="165" height="28" rx="14" fill="#b59bff"/><text x="1371" y="429" class="pill">SEARCHABLE MEMORY</text>
+  </g>
+  <path d="M350 368H405M655 368H710M960 368H1015M1265 368H1325" fill="none" stroke="#52d9e7" stroke-width="3" marker-end="url(#arrowCyan)"/>
+
+  <rect x="70" y="595" width="1660" height="440" rx="26" fill="#0c1a2b" stroke="#1c3854" stroke-width="2"/>
+  <rect x="70" y="595" width="1660" height="58" rx="26" fill="#11263c"/><rect x="70" y="627" width="1660" height="26" fill="#11263c"/>
+  <circle cx="105" cy="624" r="8" fill="#b58dff"/><text x="130" y="631" class="lane">02  ONLINE QUESTION · EVERY ANSWER IS TRACEABLE</text>
+
+  <g filter="url(#shadow)">
+    <rect x="105" y="715" width="230" height="190" rx="18" fill="#11243a" stroke="#2c7f91" stroke-width="2"/><rect x="105" y="715" width="230" height="7" rx="4" fill="url(#cyan)"/>
+    <text x="130" y="765" class="node-title">User asks</text><text x="130" y="795" class="node-body">Question + workspace ID</text><text x="130" y="822" class="node-body">React / Streamlit client</text><rect x="130" y="850" width="112" height="28" rx="14" fill="#53d8da"/><text x="146" y="869" class="pill">UI INPUT</text>
+    <rect x="395" y="715" width="245" height="190" rx="18" fill="#11243a" stroke="#2c7f91" stroke-width="2"/><rect x="395" y="715" width="245" height="7" rx="4" fill="url(#cyan)"/>
+    <text x="420" y="765" class="node-title">FastAPI /query</text><text x="420" y="795" class="node-body">Classifier + safety checks</text><text x="420" y="822" class="node-body">Tenant + access filtering</text><rect x="420" y="850" width="112" height="28" rx="14" fill="#53d8da"/><text x="436" y="869" class="pill">BACKEND</text>
+    <rect x="700" y="715" width="245" height="190" rx="18" fill="#11243a" stroke="#6650ae" stroke-width="2"/><rect x="700" y="715" width="245" height="7" rx="4" fill="url(#violet)"/>
+    <text x="725" y="765" class="node-title">Retrieve evidence</text><text x="725" y="795" class="node-body">Lexical / vector-ready search</text><text x="725" y="822" class="node-body">Top passages + metadata</text><rect x="725" y="850" width="142" height="28" rx="14" fill="#b59bff"/><text x="741" y="869" class="pill">RAG RETRIEVAL</text>
+    <rect x="1005" y="715" width="245" height="190" rx="18" fill="#11243a" stroke="#6650ae" stroke-width="2"/><rect x="1005" y="715" width="245" height="7" rx="4" fill="url(#violet)"/>
+    <text x="1030" y="765" class="node-title">Grounded generation</text><text x="1030" y="795" class="node-body">Prompt = question + passages</text><text x="1030" y="822" class="node-body">Ollama llama3.2:3b or fallback</text><rect x="1030" y="850" width="130" height="28" rx="14" fill="#b59bff"/><text x="1046" y="869" class="pill">AI ANSWER</text>
+    <rect x="1310" y="715" width="230" height="190" rx="18" fill="#11243a" stroke="#ae6c55" stroke-width="2"/><rect x="1310" y="715" width="230" height="7" rx="4" fill="url(#gold)"/>
+    <text x="1335" y="765" class="node-title">Verify + cite</text><text x="1335" y="795" class="node-body">Groundedness + injection guard</text><text x="1335" y="822" class="node-body">Confidence · abstention · sources</text><rect x="1335" y="850" width="125" height="28" rx="14" fill="#ffc36b"/><text x="1351" y="869" class="pill">TRUST LAYER</text>
+    <rect x="1600" y="715" width="90" height="190" rx="18" fill="#11243a" stroke="#2c7f91" stroke-width="2"/><rect x="1600" y="715" width="90" height="7" rx="4" fill="url(#cyan)"/>
+    <text x="1622" y="770" class="node-title" transform="rotate(90 1622 770)">Evidence UI</text><text x="1620" y="850" class="node-body" transform="rotate(90 1620 850)">answer + sources</text>
+  </g>
+  <path d="M335 810H390M640 810H695M945 810H1000M1250 810H1305M1545 810H1595" fill="none" stroke="#b095ff" stroke-width="3" marker-end="url(#arrowViolet)"/>
+  <path d="M1490 460V680" fill="none" stroke="#b095ff" stroke-width="3" stroke-dasharray="10 10" marker-end="url(#arrowViolet)"/><text x="1510" y="580" class="small">loaded at startup</text>
+
+  <rect x="105" y="1080" width="1590" height="75" rx="18" fill="#101f34" stroke="#28405c"/>
+  <text x="135" y="1112" class="tech">TECH STACK</text>
+  <text x="350" y="1112" class="tech">Frontend</text><text x="350" y="1137" class="tech-sub">React · Vite · Three.js</text>
+  <text x="690" y="1112" class="tech">API</text><text x="690" y="1137" class="tech-sub">Python · FastAPI · Pydantic</text>
+  <text x="1040" y="1112" class="tech">AI</text><text x="1040" y="1137" class="tech-sub">Ollama · llama3.2:3b · RAG</text>
+  <text x="1410" y="1112" class="tech">Deploy</text><text x="1410" y="1137" class="tech-sub">Vercel + Render</text>
+</svg>
