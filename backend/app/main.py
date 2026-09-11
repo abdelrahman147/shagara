@@ -73,6 +73,26 @@ async def health() -> dict[str, str]:
     return {"status": "ok", "service": "shagara-rag"}
 
 
+@router.get("/debug")
+@app.get("/api/debug")
+async def debug_endpoint():
+    import os
+    all_files = []
+    for root, _, files in os.walk("/var/task" if Path("/var/task").exists() else "."):
+        if any(skip in root for skip in [".git", "node_modules"]):
+            continue
+        for f in files:
+            all_files.append(str(Path(root) / f))
+    return {
+        "cwd": str(Path.cwd()),
+        "dist_candidates": [str(d) + f" (exists={d.exists()})" for d in DIST_CANDIDATES],
+        "dist_dir": str(DIST_DIR),
+        "index_html_exists": INDEX_HTML.exists(),
+        "files_sample": all_files[:50]
+    }
+
+
+
 
 @router.post("/query", response_model=QueryResponse)
 async def query_endpoint(request: QueryRequest) -> QueryResponse:
