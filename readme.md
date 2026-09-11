@@ -6,15 +6,28 @@
 
 an end-to-end rag-powered botanical knowledge and urban agriculture system
 
+<br/>
+
+<video src="docs/0911.mp4" width="100%" controls="controls"></video>
+
+<br/>
+
+<a href="docs/0911.mp4">
+  <img src="https://img.shields.io/badge/▶%20Watch-System%20Walkthrough%20Video-2d5a27?style=for-the-badge&logoColor=white" alt="Watch Video Walkthrough" height="34" />
+</a>
+
+<br/><br/>
+
 ### fast access
 
-[**1 explore the notebook**](notebooks/rag_pipeline.ipynb) • [**2 inspect the vector index**](backend/data/vector_store/index.json) • [**3 launch the website**](https://shagara.shop)
+[**▶ watch video**](docs/0911.mp4) • [**1 explore the notebook**](notebooks/rag_pipeline.ipynb) • [**2 inspect the vector index**](backend/data/vector_store/index.json) • [**3 launch the website**](https://shagara.shop)
 
 [api documentation](https://shagara.shop/docs) • [presentation deck](docs/shagara_presentation.pptx)
 
-**certificates** • [intro to deep learning](https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/intro-to-deep-learning) • [computer vision](https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/computer-vision)
+**certificates** • [intro to deep learning](docs/Abdelrahman%20mohsen%20-%20Intro%20to%20Deep%20Learning.png) ([verify](https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/intro-to-deep-learning)) • [computer vision](docs/Abdelrahman%20mohsen%20-%20Computer%20Vision.png) ([verify](https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/computer-vision))
 
 </div>
+
 
 ## overview
 
