@@ -17,19 +17,28 @@
       "document": "community_standards.md",
       "tenant": "shagara",
       "access": "members",
-      "text": "## Harvest sharing Community beds are harvested on Saturday mornings. Members may take one third of ripe produce and should log the harvest weight in the shared sheet.",
+      "text": "## Harvest sharing Community beds are harvested on Saturday mornings. Members may take one third of ripe produce and should log the harvest weight in the shared sheet. Always use clean shears disinfected with rubbing alcohol to prevent transferring plant viruses between community beds.",
       "section": "Harvest sharing",
       "page": 1,
-      "id": "848f9c03fd4c"
+      "id": "a0cac3765300"
     },
     {
       "document": "community_standards.md",
       "tenant": "shagara",
       "access": "members",
-      "text": "## Compost safety Only untreated plant scraps are accepted. Meat, dairy, glossy paper, and diseased plants must stay out of the compost bins.",
+      "text": "## Compost safety Only untreated plant scraps are accepted. Meat, dairy, glossy paper, and diseased plants must stay out of the compost bins. Maintain an aerobic compost ratio of 2 parts brown carbon material (dry leaves, shredded cardboard) to 1 part green nitrogen scraps (vegetable trimmings, coffee grounds). Turn compost tumblers twice weekly to accelerate decomposition and maintain internal heat above 55 degrees Celsius.",
       "section": "Compost safety",
       "page": 1,
-      "id": "1378039c5a8c"
+      "id": "c3cd5b073d15"
+    },
+    {
+      "document": "community_standards.md",
+      "tenant": "shagara",
+      "access": "members",
+      "text": "## Rooftop Structural Safety and Load Limits Rooftop growers must strictly respect residential structural load limits. Standard Cairo reinforced concrete residential roof slabs safely support a maximum distributed load of 150 to 200 kg per square metre. Heavy planters exceeding 40 litres must always be positioned directly above structural concrete columns or load-bearing perimeter walls, never in the unsupported center of long concrete spans.",
+      "section": "Rooftop Structural Safety and Load Limits",
+      "page": 1,
+      "id": "7bff8c6dd7c8"
     },
     {
       "document": "irrigation_playbook.md",
@@ -44,19 +53,37 @@
       "document": "irrigation_playbook.md",
       "tenant": "shagara",
       "access": "all",
-      "text": "## Drip schedule For a 20 litre container, start with 600 to 800 ml every morning. Increase the volume by 20 percent during heatwaves and reduce it after cloudy days. Always check the top 2 cm of soil before repeating a cycle.",
+      "text": "## Drip schedule For a 20 litre container, start with 600 to 800 ml every morning. Increase the volume by 20 percent during heatwaves and reduce it after cloudy days. Always check the top 2 cm of soil before repeating a cycle. Automated digital timers should trigger drip emitters at 6:00 AM before direct rooftop solar radiation heats the surface.",
       "section": "Drip schedule",
       "page": 1,
-      "id": "a4e17236b1ac"
+      "id": "8a383af6b4bf"
     },
     {
       "document": "irrigation_playbook.md",
       "tenant": "shagara",
       "access": "all",
-      "text": "## Water quality If tap water leaves a white crust, rest it overnight and flush the container with clean water once a month. Never allow a saucer to stay full because stagnant water suffocates roots.",
+      "text": "## Water quality If tap water leaves a white crust, rest it overnight and flush the container with clean water once a month. Never allow a saucer to stay full because stagnant water suffocates roots. Resting municipal Cairo tap water for 24 hours in an open barrel allows chlorine to off-gas and heavy sediments to settle at the bottom.",
       "section": "Water quality",
       "page": 1,
-      "id": "896c0dad3d8e"
+      "id": "f06041f73c50"
+    },
+    {
+      "document": "irrigation_playbook.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Sub-Irrigation Planters and Wicking Beds Sub-irrigation planters (SIPs) provide a bottom water reservoir with a perforated separation screen and capillary soil wick. SIPs reduce evaporation losses by up to 45 percent compared to top watering and provide stable moisture buffer for tomatoes, cucumbers, and eggplants during extreme Cairo heatwaves.",
+      "section": "Sub-Irrigation Planters and Wicking Beds",
+      "page": 1,
+      "id": "c660c54f97f8"
+    },
+    {
+      "document": "irrigation_playbook.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Salinity Flushing Protocol High mineral content in local tap water leads to sodium and calcium salt crust accumulation in container root zones. Every 4 weeks, conduct a deep leaching flush by slowly pouring fresh water equal to twice the container volume until runoff flows freely from drainage holes, washing out accumulated salts.",
+      "section": "Salinity Flushing Protocol",
+      "page": 1,
+      "id": "398419504eeb"
     },
     {
       "document": "other_workspace.md",
@@ -89,10 +116,28 @@
       "document": "pest_field_notes.md",
       "tenant": "shagara",
       "access": "all",
-      "text": "## Powdery mildew Remove damaged leaves and increase spacing between plants. Water the soil in the morning rather than wetting foliage. Do not compost infected leaves.",
+      "text": "## Powdery mildew Remove damaged leaves and increase spacing between plants. Water the soil in the morning rather than wetting foliage. Do not compost infected leaves. An organic treatment is 5 grams of baking soda (sodium bicarbonate) and 2 drops of vegetable oil in 1 litre of water sprayed at early sunrise.",
       "section": "Powdery mildew",
       "page": 1,
-      "id": "4106325be166"
+      "id": "f1f73ab194ae"
+    },
+    {
+      "document": "pest_field_notes.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Spider Mites Two-spotted spider mites proliferate rapidly during dry, dusty Cairo heatwaves, causing yellow stippling and fine webbing under foliage. Treat spider mites on mint, tomatoes, and eggplants by rinsing leaf undersides with cold water blasts. Spray an emulsion of 5 ml pure cold-pressed neem oil and 2 ml liquid Castile soap diluted in 1 litre of lukewarm water. Apply thoroughly beneath leaves every 4 days for three consecutive cycles after sunset.",
+      "section": "Spider Mites",
+      "page": 1,
+      "id": "f7971e04070a"
+    },
+    {
+      "document": "pest_field_notes.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Whiteflies and Flying Pests Install bright yellow sticky cards 15 cm above the plant canopy to trap adult whiteflies and thrips. Plant African marigolds and sweet alyssum around tomato containers to attract beneficial predatory hoverflies and parasitic wasps.",
+      "section": "Whiteflies and Flying Pests",
+      "page": 1,
+      "id": "a10218ebf92f"
     },
     {
       "document": "rooftop_growing.md",
@@ -107,19 +152,46 @@
       "document": "rooftop_growing.md",
       "tenant": "shagara",
       "access": "all",
-      "text": "## Basil in Cairo Basil performs best with 6 to 8 hours of bright light and airflow around the leaves. Keep the growing medium evenly moist, but let the top 2 cm dry before watering again. Harvest the top leaves weekly to encourage branching.",
+      "text": "## Basil in Cairo Basil performs best with 6 to 8 hours of bright light and airflow around the leaves. Keep the growing medium evenly moist, but let the top 2 cm dry before watering again. Harvest the top leaves weekly to encourage branching. Pinch flowers immediately to keep foliage tender and aromatic.",
       "section": "Basil in Cairo",
       "page": 1,
-      "id": "6bd90fa69cb8"
+      "id": "c4d2e371dc28"
     },
     {
       "document": "rooftop_growing.md",
       "tenant": "shagara",
       "access": "all",
-      "text": "## Summer heat During July and August, move containers away from reflective walls and use a 30 percent shade cloth between 11am and 3pm. Morning irrigation reduces evaporation and leaf stress.",
+      "text": "## Summer heat During July and August, move containers away from reflective walls and use a 30 percent shade cloth between 11am and 3pm. Morning irrigation reduces evaporation and leaf stress. Mulching containers with 3 cm of clean straw lowers root zone temperatures by up to 6 degrees Celsius during Cairo heatwaves.",
       "section": "Summer heat",
       "page": 1,
-      "id": "c7412765ecd7"
+      "id": "994b79596ac5"
+    },
+    {
+      "document": "rooftop_growing.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Rooftop Tomatoes and Peppers Tomatoes and sweet peppers require containers with a minimum depth of 35 cm and a volume of at least 25 litres per plant. Provide sturdy bamboo or wire cages anchored against Khamaseen desert winds. Apply organic calcium nitrate or crushed eggshell amendments into the potting mix to prevent blossom end rot in extreme daytime heat.",
+      "section": "Rooftop Tomatoes and Peppers",
+      "page": 1,
+      "id": "e0bf949a3b00"
+    },
+    {
+      "document": "rooftop_growing.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Mint and Mediterranean Herbs Mint species including spearmint and peppermint must always be grown in separate, dedicated containers to stop invasive runners from suffocating neighboring crops. Mint thrives with morning sun, afternoon dappled shade, and consistent soil dampness. Rosemary, thyme, and oregano prefer well-draining grit mixtures and can withstand full direct rooftop sun with moderate watering.",
+      "section": "Mint and Mediterranean Herbs",
+      "page": 1,
+      "id": "5dbf9833d9e8"
+    },
+    {
+      "document": "rooftop_growing.md",
+      "tenant": "shagara",
+      "access": "all",
+      "text": "## Recommended Soil Mix and Rooftop Load The optimal lightweight container substrate for Cairo rooftop farming consists of 50 percent coco coir or peat moss, 30 percent horticultural perlite, and 20 percent organic vermicompost. This blend maintains aeration, retains balanced moisture, and prevents excessive structural dead-weight on residential concrete rooftops. Avoid garden clay soil which compacts and adds hazardous weight.",
+      "section": "Recommended Soil Mix and Rooftop Load",
+      "page": 1,
+      "id": "de044eaeb5fc"
     },
     {
       "document": "test_upload.md",

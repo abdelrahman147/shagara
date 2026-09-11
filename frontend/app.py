@@ -1,11 +1,7 @@
-"""Official Streamlit frontend required by the course guide.
-
-The React/Vite workspace is the richer presentation UI; this file keeps the
-submission compatible with the documented Streamlit run command.
-"""
 import os
 import requests
 import streamlit as st
+
 
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000").rstrip("/")
 st.set_page_config(page_title="shagara — Rooftop Garden Intelligence", page_icon="🌿", layout="wide")
