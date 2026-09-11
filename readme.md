@@ -8,13 +8,21 @@ an end-to-end rag-powered botanical knowledge and urban agriculture system
 
 <br/>
 
+<p align="center">
+  <a href="docs/0911.mp4">
+    <img src="https://img.shields.io/badge/▶%20Walkthrough-Video%20Demo-2d5a27?style=for-the-badge&logoColor=white" alt="Video Walkthrough" />
+  </a>
+  &nbsp;
+  <a href="docs/shagara_presentation.pptx">
+    <img src="https://img.shields.io/badge/📊%20Presentation-PowerPoint%20Deck-1b4332?style=for-the-badge&logoColor=white" alt="PowerPoint Deck" />
+  </a>
+  &nbsp;
+  <a href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfO09ogV4KDCt-xMy3U5tKGMGVjJxO63rftufhhQ9_iGhvy4w/formResponse?pli=1">
+    <img src="https://img.shields.io/badge/🎓%20ITI%20Form-Certificate%20%26%20Project-0b5345?style=for-the-badge&logoColor=white" alt="Certificate & Project Form" />
+  </a>
+</p>
+
 <video src="docs/0911.mp4" width="100%" controls="controls"></video>
-
-<br/>
-
-<a href="docs/0911.mp4">
-  <img src="https://img.shields.io/badge/▶%20Watch-System%20Walkthrough%20Video-2d5a27?style=for-the-badge&logoColor=white" alt="Watch Video Walkthrough" height="34" />
-</a>
 
 <br/><br/>
 
@@ -22,14 +30,33 @@ an end-to-end rag-powered botanical knowledge and urban agriculture system
 
 [**🌿 shagara.shop**](https://shagara.shop) • [**⚡ shagara-b6il.vercel.app**](https://shagara-b6il.vercel.app/)
 
+<br/>
+
+### certifications and project deliverables
+
+| item | deliverable link | verification / description |
+|---|---|---|
+| **iti submission form** | [certificate and project form](https://docs.google.com/forms/u/1/d/e/1FAIpQLSfO09ogV4KDCt-xMy3U5tKGMGVjJxO63rftufhhQ9_iGhvy4w/formResponse?pli=1) | official project & certificate submission |
+| **system presentation** | [shagara_presentation.pptx](docs/shagara_presentation.pptx) | complete presentation deck (10 structured slides) |
+| **walkthrough video** | [0911.mp4 (docs/0911.mp4)](docs/0911.mp4) | full screen live walkthrough & system demo |
+| **intro to deep learning** | [certificate image](docs/Abdelrahman%20mohsen%20-%20Intro%20to%20Deep%20Learning.png) | [verify on kaggle](https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/intro-to-deep-learning) |
+| **computer vision** | [certificate image](docs/Abdelrahman%20mohsen%20-%20Computer%20Vision.png) | [verify on kaggle](https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/computer-vision) |
+
+<br/>
+
+<p align="center">
+  <a href="https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/intro-to-deep-learning">
+    <img src="docs/Abdelrahman%20mohsen%20-%20Intro%20to%20Deep%20Learning.png" alt="Intro to Deep Learning Certificate" width="48%" />
+  </a>
+  &nbsp;
+  <a href="https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/computer-vision">
+    <img src="docs/Abdelrahman%20mohsen%20-%20Computer%20Vision.png" alt="Computer Vision Certificate" width="48%" />
+  </a>
+</p>
+
 ### fast access
 
-[**▶ watch video**](docs/0911.mp4) • [**1 explore the notebook**](notebooks/rag_pipeline.ipynb) • [**2 inspect the vector index**](backend/data/vector_store/index.json) • [**3 launch live app**](https://shagara.shop)
-
-
-[api documentation](https://shagara.shop/docs) • [presentation deck](docs/shagara_presentation.pptx)
-
-**certificates** • [intro to deep learning](docs/Abdelrahman%20mohsen%20-%20Intro%20to%20Deep%20Learning.png) ([verify](https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/intro-to-deep-learning)) • [computer vision](docs/Abdelrahman%20mohsen%20-%20Computer%20Vision.png) ([verify](https://www.kaggle.com/learn/certification/abdelrahmanmohsen147/computer-vision))
+[**▶ watch video**](docs/0911.mp4) • [**📊 presentation deck**](docs/shagara_presentation.pptx) • [**1 explore notebook**](notebooks/rag_pipeline.ipynb) • [**2 inspect vector index**](backend/data/vector_store/index.json) • [**3 launch live app**](https://shagara.shop) • [**4 api docs**](https://shagara.shop/docs)
 
 </div>
 
