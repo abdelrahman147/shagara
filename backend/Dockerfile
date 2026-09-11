@@ -5,4 +5,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend ./backend
 COPY rag_demo_data ./rag_demo_data
 EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--app-dir", "backend", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port ${PORT:-8000}"]

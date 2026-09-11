@@ -65,7 +65,7 @@ Set `VITE_API_BASE_URL` in `frontend/.env` to the FastAPI URL.
 
 ### Vercel deployment
 
-Deploy the repository root as one Vercel project for the FastAPI function, then deploy `frontend/` as a second Vercel project for the React site. The root project includes `vercel.json` and exposes the API under `/api`. Add `GEMINI_API_KEY` and `API_CORS_ORIGINS` to the root project's server environment. In the frontend project, set `VITE_API_BASE_URL` to the root project's URL followed by `/api`, then redeploy. Add `shagara.shop` as a custom domain on the frontend project.
+Deploy the repository root as one Vercel project. The root `vercel.json` builds the React app from `frontend/` and routes `/api/*` to the FastAPI function in `api/index.py`. Add `GEMINI_API_KEY` to the Vercel project environment variables. Set `API_CORS_ORIGINS` to the deployment URL and `https://shagara.shop`, then redeploy. The frontend uses the same-origin `/api` path automatically. Add `shagara.shop` as a custom domain on this project.
 
 ### Streamlit frontend
 

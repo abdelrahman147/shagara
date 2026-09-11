@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { Send, Plus, FileText, BarChart3, Settings, Sparkles, Paperclip, ChevronRight, Copy, Check, Activity, Database, ShieldCheck, X, Menu, RotateCcw, ArrowRight, Leaf, Boxes } from 'lucide-react';
 import './styles.css';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 const starter = [
   {role:'assistant', text:'Welcome to shagara. Ask anything about your rooftop notes and I will show the evidence beside the answer.', time:'Just now'}
 ];
@@ -29,7 +29,7 @@ function SourceCard({source,onOpen}){return <button className="source-card" onCl
 
 function App(){
  const [messages,setMessages]=useState(starter); const [draft,setDraft]=useState(''); const [loading,setLoading]=useState(false); const [active,setActive]=useState('landing'); const [selected,setSelected]=useState(null); const [copied,setCopied]=useState(false); const [mobileNav,setMobileNav]=useState(false); const [docs,setDocs]=useState([{name:'rooftop_growing.md',status:'Ready',chunks:2},{name:'irrigation_playbook.md',status:'Ready',chunks:2},{name:'pest_field_notes.md',status:'Ready',chunks:2},{name:'community_standards.md',status:'Ready',chunks:1}]);
- const ask=async(q)=>{if(!q.trim()||loading)return; setDraft(''); setMessages(m=>[...m,{role:'user',text:q,time:'Now'}]); setLoading(true); try{const res=await fetch(`${API_BASE}/query`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,tenant_id:'shagara',access_levels:['all','members'],use_ollama:true})}); if(!res.ok)throw new Error('API unavailable'); const data=await res.json(); setMessages(m=>[...m,{role:'assistant',...data,time:'Now'}]);}catch(e){setMessages(m=>[...m,{role:'assistant',text:'I could not reach the local API. Start FastAPI on port 8000, then retry this question.',error:true,time:'Now'}]);} finally{setLoading(false)}};
+ const ask=async(q)=>{if(!q.trim()||loading)return; setDraft(''); setMessages(m=>[...m,{role:'user',text:q,time:'Now'}]); setLoading(true); try{const res=await fetch(`${API_BASE}/query`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,tenant_id:'shagara',access_levels:['all','members'],use_ollama:false})}); if(!res.ok)throw new Error('API unavailable'); const data=await res.json(); setMessages(m=>[...m,{role:'assistant',...data,time:'Now'}]);}catch(e){setMessages(m=>[...m,{role:'assistant',text:'I could not reach the Shagara API. Check the deployment and retry this question.',error:true,time:'Now'}]);} finally{setLoading(false)}};
  const copy=()=>{const last=[...messages].reverse().find(m=>m.role==='assistant'); if(last){navigator.clipboard?.writeText(last.text||last.answer||'');setCopied(true);setTimeout(()=>setCopied(false),1500)}};
  const upload=async(e)=>{const f=e.target.files?.[0];if(!f)return;setDocs(d=>[{name:f.name,status:'Indexing…',chunks:'—'},...d]);try{const body=new FormData();body.append('file',f);const res=await fetch(`${API_BASE}/documents/upload`,{method:'POST',body});if(!res.ok)throw new Error('Upload failed');const data=await res.json();setDocs(d=>d.map(x=>x.name===f.name?{...x,status:'Ready',chunks:data.chunks}:x));}catch(err){setDocs(d=>d.map(x=>x.name===f.name?{...x,status:'Upload failed',chunks:'—'}:x));}};
  return <div className="app-shell">
