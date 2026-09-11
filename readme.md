@@ -63,11 +63,9 @@ npm run dev
 
 Set `VITE_API_BASE_URL` in `frontend/.env` to the FastAPI URL.
 
-### Render deployment
+### Vercel deployment
 
-The repository includes [`render.yaml`](render.yaml) with a Docker web service for the FastAPI backend and a static site service for the React frontend. In Render, choose **New > Blueprint**, connect this repository, and apply the blueprint. Set `API_CORS_ORIGINS` on `shagara-api` to the final frontend URL. After the backend is live, set `VITE_API_BASE_URL` for `shagara-web` to the backend URL and redeploy the frontend. Add `shagara.shop` as a custom domain on the frontend service and point its DNS records to Render.
-
-Render cannot run Ollama inside this lightweight web service. Leave `OLLAMA_URL` blank to use Shagara's deterministic grounded fallback, or point it to a separately hosted Ollama-compatible endpoint.
+Deploy the repository root as one Vercel project for the FastAPI function, then deploy `frontend/` as a second Vercel project for the React site. The root project includes `vercel.json` and exposes the API under `/api`. Add `GEMINI_API_KEY` and `API_CORS_ORIGINS` to the root project's server environment. In the frontend project, set `VITE_API_BASE_URL` to the root project's URL followed by `/api`, then redeploy. Add `shagara.shop` as a custom domain on the frontend project.
 
 ### Streamlit frontend
 
@@ -80,7 +78,7 @@ streamlit run app.py
 
 ## AI generation
 
-For Render, add `GEMINI_API_KEY` to the `shagara-api` environment variables. The key is read only by the backend and is never exposed to the browser. Shagara sends retrieved document context to Gemini 2.0 Flash; if the provider is unavailable, it returns the deterministic grounded answer.
+Add `GEMINI_API_KEY` to the backend Vercel project's environment variables. The key is read only by the backend and is never exposed to the browser. Shagara sends retrieved document context to Gemini 2.0 Flash; if the provider is unavailable, it returns the deterministic grounded answer.
 
 The local Ollama option remains available:
 
