@@ -3,7 +3,7 @@
   "outputDirectory": "frontend/dist",
   "functions": {
     "api/index.py": {
-      "includeFiles": "backend/**,rag_demo_data/**"
+      "includeFiles": "backend/**,rag_demo_data/**,frontend/dist/**"
     }
   },
   "rewrites": [
