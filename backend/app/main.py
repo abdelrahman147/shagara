@@ -17,8 +17,18 @@ async def lifespan(_: FastAPI):
 app = FastAPI(title="shagara RAG API", version="1.0.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=API_CORS_ORIGINS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
+from starlette.requests import Request
+
+@app.middleware("http")
+async def trace_path_middleware(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Request-Path"] = request.url.path
+    response.headers["X-Scope-Path"] = request.scope.get("path", "")
+    return response
+
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
+
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 DIST_CANDIDATES = [
