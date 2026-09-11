@@ -12,7 +12,7 @@ Live site: https://shagara.shop
 - Tenant and access-level filtering before retrieval
 - Query routing for document questions, analytics questions, and chat
 - Grounded answers with citations, confidence, abstention, and safety flags
-- Optional Ollama generation with `llama3.2:3b`
+- Optional Gemini generation with a server-side `GEMINI_API_KEY`, plus Ollama support
 - React/Vite/Three.js product interface
 - Streamlit interface required by the course brief
 - FastAPI API with upload and query endpoints
@@ -78,7 +78,11 @@ $env:API_BASE_URL="http://localhost:8000"
 streamlit run app.py
 ```
 
-## Ollama
+## AI generation
+
+For Render, add `GEMINI_API_KEY` to the `shagara-api` environment variables. The key is read only by the backend and is never exposed to the browser. Shagara sends retrieved document context to Gemini 2.0 Flash; if the provider is unavailable, it returns the deterministic grounded answer.
+
+The local Ollama option remains available:
 
 The API uses a deterministic grounded response when Ollama is unavailable. To enable local generation:
 

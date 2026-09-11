@@ -10,6 +10,8 @@ services:
         sync: false
       - key: OLLAMA_MODEL
         value: llama3.2:3b
+      - key: GEMINI_API_KEY
+        sync: false
       - key: API_CORS_ORIGINS
         sync: false
 
@@ -18,7 +20,7 @@ services:
     runtime: static
     rootDir: frontend
     buildCommand: npm ci && npm run build
-    staticPublishPath: frontend/dist
+    staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*

@@ -115,7 +115,19 @@ class Retriever:
             snippets.append(" ".join(chosen[:2]))
         return " ".join(snippets)
 
-    async def ollama(self, question: str, context: str) -> str | None:
+    async def generate(self, question: str, context: str) -> str | None:
+        gemini_key = os.getenv("GEMINI_API_KEY")
+        if gemini_key:
+            prompt = f"Answer only from this context. Be concise and cite the relevant source marker.\nCONTEXT:\n{context}\nQUESTION: {question}"
+            url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+            try:
+                async with httpx.AsyncClient(timeout=30) as client:
+                    response = await client.post(url, params={"key": gemini_key}, json={"contents": [{"parts": [{"text": prompt}]}]})
+                    response.raise_for_status()
+                    candidates = response.json().get("candidates", [])
+                    return candidates[0]["content"]["parts"][0]["text"].strip() if candidates else None
+            except (httpx.HTTPError, ValueError, KeyError, IndexError):
+                pass
         url = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434") + "/api/generate"
         model = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
         prompt = f"Answer only from this context and be concise.\nCONTEXT:\n{context}\nQUESTION: {question}"
@@ -168,8 +180,8 @@ async def query(question: str, tenant: str = "shagara", access: list[str] = ["al
     confidence = rows[0][1] if rows else 0
     abstained = confidence < 0.12
     answer = ABSTAIN if abstained else Retriever.answer(question, rows)
-    if use_ollama and not abstained:
-        generated = await retriever.ollama(question, "\n".join(p.text for p, _ in rows))
+    if (use_ollama or os.getenv("GEMINI_API_KEY")) and not abstained:
+        generated = await retriever.generate(question, "\n".join(p.text for p, _ in rows))
         if generated:
             answer = generated
     sources = [{"marker": f"S{i}", "document": p.document, "page": p.page, "section": p.section, "score": round(s, 3), "excerpt": p.text[:220]} for i, (p, s) in enumerate(rows, 1)]
