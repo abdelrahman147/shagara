@@ -20,7 +20,17 @@ app.add_middleware(CORSMiddleware, allow_origins=API_CORS_ORIGINS, allow_credent
 from starlette.requests import Request
 
 @app.middleware("http")
-async def trace_path_middleware(request: Request, call_next):
+async def vercel_path_middleware(request: Request, call_next):
+    path = request.scope.get("path", "")
+    subpath = request.query_params.get("__path__")
+    matched = request.headers.get("x-matched-path", "")
+    if subpath:
+        request.scope["path"] = f"/{subpath.lstrip('/')}"
+    elif path == "/api/index.py" or path.startswith("/api/index.py"):
+        if matched and not matched.startswith("/api/index.py"):
+            request.scope["path"] = matched
+        else:
+            request.scope["path"] = "/health"
     response = await call_next(request)
     response.headers["X-Request-Path"] = request.url.path
     response.headers["X-Scope-Path"] = request.scope.get("path", "")
@@ -32,10 +42,14 @@ from fastapi.staticfiles import StaticFiles
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 DIST_CANDIDATES = [
-    ROOT / "frontend" / "dist",
-    Path.cwd() / "frontend" / "dist",
-    Path("/var/task/frontend/dist"),
     Path(__file__).resolve().parent / "dist",
+    Path(__file__).resolve().parent.parent.parent / "api" / "dist",
+    Path(__file__).resolve().parent.parent.parent / "frontend" / "dist",
+    Path.cwd() / "frontend" / "dist",
+    Path.cwd() / "dist",
+    Path("/var/task/backend/app/dist"),
+    Path("/var/task/api/dist"),
+    Path("/var/task/frontend/dist"),
 ]
 DIST_DIR = next((d for d in DIST_CANDIDATES if (d / "index.html").exists()), DIST_CANDIDATES[0])
 INDEX_HTML = DIST_DIR / "index.html"
@@ -51,8 +65,10 @@ router = APIRouter()
 @app.get("/", response_class=HTMLResponse)
 @app.get("/index.html", response_class=HTMLResponse)
 async def root_endpoint():
-    if INDEX_HTML.exists():
-        return HTMLResponse(INDEX_HTML.read_text(encoding="utf-8"))
+    for d in DIST_CANDIDATES:
+        idx = d / "index.html"
+        if idx.exists():
+            return HTMLResponse(idx.read_text(encoding="utf-8"))
     return HTMLResponse("<!doctype html><html><body><h1>shagara</h1></body></html>")
 
 
@@ -74,6 +90,7 @@ async def asset_endpoint(asset_path: str):
                     media_type = "application/javascript" if asset_path.endswith(".js") else "text/css" if asset_path.endswith(".css") else None
                     return FileResponse(matches[0], media_type=media_type)
     raise HTTPException(status_code=404, detail="Asset not found")
+
 
 
 

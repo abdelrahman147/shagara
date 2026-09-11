@@ -7,10 +7,10 @@
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.py" },
-    { "source": "/api", "destination": "/api/index.py" },
-    { "source": "/docs", "destination": "/api/index.py" },
-    { "source": "/openapi.json", "destination": "/api/index.py" },
+    { "source": "/api/(.*)", "destination": "/api/index.py?__path__=$1" },
+    { "source": "/api", "destination": "/api/index.py?__path__=health" },
+    { "source": "/docs", "destination": "/api/index.py?__path__=docs" },
+    { "source": "/openapi.json", "destination": "/api/index.py?__path__=openapi.json" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/((?!api|docs|openapi.json|assets|.*\\..*).*)", "destination": "/index.html" }
   ]
