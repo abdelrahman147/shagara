@@ -63,5 +63,5 @@
   <text x="350" y="1112" class="tech">Frontend</text><text x="350" y="1137" class="tech-sub">React · Vite · Three.js</text>
   <text x="690" y="1112" class="tech">API</text><text x="690" y="1137" class="tech-sub">Python · FastAPI · Pydantic</text>
   <text x="1040" y="1112" class="tech">AI</text><text x="1040" y="1137" class="tech-sub">Ollama · llama3.2:3b · RAG</text>
-  <text x="1410" y="1112" class="tech">Deploy</text><text x="1410" y="1137" class="tech-sub">Vercel + Render</text>
+  <text x="1410" y="1112" class="tech">Deploy</text><text x="1410" y="1137" class="tech-sub">Vercel</text>
 </svg>
