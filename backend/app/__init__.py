@@ -1,1 +1,1 @@
-"""Local API for the graduation RAG demo."""
+__all__ = []

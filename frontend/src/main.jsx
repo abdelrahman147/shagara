@@ -104,8 +104,7 @@ function App() {
 
   return (
     <div className="reference-page">
-      {/* Editorial Header */}
-      <header className="reference-header">
+            <header className="reference-header">
         <div className="reference-brand" onClick={() => setActiveTab('chat')}>
           <span className="reference-leafmark">
             <Leaf size={24} />
@@ -169,8 +168,7 @@ function App() {
         </nav>
       </header>
 
-      {/* Decorative Tree Silhouette in Background (No 3D) */}
-      <svg className="decorative-tree-bg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="decorative-tree-bg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M100 190V90M100 140L70 110M100 120L130 90M100 90C70 90 50 60 70 30C90 0 110 0 130 30C150 60 130 90 100 90Z" stroke="#0d432f" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
 
@@ -178,8 +176,7 @@ function App() {
       <main id="deal-workspace">
         {activeTab === 'chat' && (
           <div className="deal-workspace">
-            {/* Left Column: Q&A Assistant */}
-            <section className="property-panel">
+                        <section className="property-panel">
               <div className="panel-heading">
                 <span>1</span>
                 <div>
@@ -188,8 +185,7 @@ function App() {
                 </div>
               </div>
 
-              {/* Quick Example Chips */}
-              <div className="chips-container">
+                            <div className="chips-container">
                 {sampleQueries.map((item) => (
                   <button 
                     key={item.label} 
@@ -202,8 +198,7 @@ function App() {
                 ))}
               </div>
 
-              {/* Messages Stream */}
-              <div className="conversation-scroll">
+                            <div className="conversation-scroll">
                 {messages.map((m, idx) => (
                   <div key={idx} className={`chat-msg ${m.role} ${m.error ? 'error' : ''}`}>
                     <div className="chat-avatar">
@@ -224,8 +219,7 @@ function App() {
                         {m.text || m.answer}
                       </div>
 
-                      {/* Source Citations */}
-                      {m.sources && m.sources.length > 0 && (
+                                            {m.sources && m.sources.length > 0 && (
                         <div className="source-citation-row">
                           {m.sources.map((s) => (
                             <button 
@@ -241,8 +235,7 @@ function App() {
                         </div>
                       )}
 
-                      {/* Copy Action */}
-                      {m.role === 'assistant' && idx > 0 && !m.error && (
+                                            {m.role === 'assistant' && idx > 0 && !m.error && (
                         <button className="copy-btn" onClick={copyAnswer}>
                           {copied ? <Check size={13} /> : <Copy size={13} />}
                           <span>{copied ? 'Copied to clipboard' : 'Copy answer'}</span>
@@ -267,8 +260,7 @@ function App() {
                 )}
               </div>
 
-              {/* Input Composer */}
-              <div className="input-composer-wrap">
+                            <div className="input-composer-wrap">
                 <div className="input-composer-row">
                   <label className="attach-label" title="Upload rooftop notes (.md, .pdf, .txt)">
                     <Paperclip size={18} />
@@ -303,8 +295,7 @@ function App() {
               </div>
             </section>
 
-            {/* Right Column: Grounded Evidence Inspector */}
-            <section className="brief-panel">
+                        <section className="brief-panel">
               <div className="panel-heading">
                 <span>2</span>
                 <div>
@@ -389,8 +380,7 @@ function App() {
           </div>
         )}
 
-        {/* Knowledge Base Tab */}
-        {activeTab === 'docs' && (
+                {activeTab === 'docs' && (
           <div className="deal-workspace single-column">
             <section className="property-panel">
               <div className="docs-header-row">
@@ -436,8 +426,7 @@ function App() {
           </div>
         )}
 
-        {/* Evaluation Tab */}
-        {activeTab === 'eval' && (
+                {activeTab === 'eval' && (
           <div className="deal-workspace single-column">
             <section className="property-panel">
               <div className="panel-heading">
@@ -499,8 +488,7 @@ function App() {
           </div>
         )}
 
-        {/* Overview Tab */}
-        {activeTab === 'overview' && (
+                {activeTab === 'overview' && (
           <div className="deal-workspace single-column">
             <div className="overview-hero">
               <h1>Turn every rooftop note into the next healthy harvest.</h1>
@@ -559,8 +547,7 @@ function App() {
         </article>
       </section>
 
-      {/* Footer Project Credit */}
-      <footer className="footer-credit-bar">
+            <footer className="footer-credit-bar">
         <span>An ITI Graduation Project</span>
         <i />
         <span>Made by Abdelrahman Mohsen</span>

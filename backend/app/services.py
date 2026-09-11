@@ -1,6 +1,5 @@
-"""Small deterministic retrieval service with Gemini generation used by Shagara API.
-"""
 from __future__ import annotations
+
 
 import os
 import re
@@ -172,7 +171,6 @@ def persist_index(passages: list[Passage]) -> None:
 retriever = Retriever()
 
 def load_persisted_index() -> None:
-    """Load the notebook artifact at startup; fall back only for a fresh clone."""
     if not INDEX_PATH.exists():
         persist_index(retriever.passages)
         return

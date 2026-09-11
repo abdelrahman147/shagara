@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 import shutil
@@ -17,19 +17,21 @@ async def lifespan(_: FastAPI):
 app = FastAPI(title="shagara RAG API", version="1.0.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=API_CORS_ORIGINS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
+router = APIRouter()
 
-@app.get("/health")
+
+@router.get("/health")
 async def health() -> dict[str, str]:
     return {"status": "ok", "service": "shagara-rag"}
 
 
-@app.post("/query", response_model=QueryResponse)
+@router.post("/query", response_model=QueryResponse)
 async def query_endpoint(request: QueryRequest) -> QueryResponse:
     result = await query(request.question, request.tenant_id, request.access_levels, request.use_ollama)
     return QueryResponse(**result)
 
 
-@app.post("/documents/upload")
+@router.post("/documents/upload")
 async def upload_document(file: UploadFile = File(...)) -> dict:
     name = Path(file.filename or "document").name
     suffix = Path(name).suffix.lower()
@@ -61,14 +63,12 @@ async def upload_document(file: UploadFile = File(...)) -> dict:
     persist_index(retriever.passages)
     return {"document": name, "status": "ready", "chunks": len(chunks), "checksum": checksum, "index_path": "backend/data/vector_store/index.json"}
 
-@app.get("/documents")
+
+@router.get("/documents")
 async def list_documents() -> dict:
     docs = sorted({p.document for p in retriever.passages if p.tenant == "shagara"})
     return {"documents": docs, "count": len(docs)}
 
 
-
-
-
-
-
+app.include_router(router)
+app.include_router(router, prefix="/api")
