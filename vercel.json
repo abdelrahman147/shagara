@@ -11,8 +11,10 @@
     { "source": "/api", "destination": "/api/index.py" },
     { "source": "/docs", "destination": "/api/index.py" },
     { "source": "/openapi.json", "destination": "/api/index.py" },
-    { "source": "/((?!api|docs|openapi.json).*)", "destination": "/index.html" }
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/((?!api|docs|openapi.json|assets|.*\\..*).*)", "destination": "/index.html" }
   ]
 }
+
 
 

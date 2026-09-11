@@ -49,11 +49,22 @@ async def root_endpoint():
 @router.get("/assets/{asset_path:path}")
 @app.get("/assets/{asset_path:path}")
 async def asset_endpoint(asset_path: str):
-    f = DIST_DIR / "assets" / asset_path
-    if f.exists():
-        media_type = "application/javascript" if asset_path.endswith(".js") else "text/css" if asset_path.endswith(".css") else None
-        return FileResponse(f, media_type=media_type)
+    for d in DIST_CANDIDATES:
+        f = d / "assets" / asset_path
+        if f.exists():
+            media_type = "application/javascript" if asset_path.endswith(".js") else "text/css" if asset_path.endswith(".css") else None
+            return FileResponse(f, media_type=media_type)
+    for d in DIST_CANDIDATES:
+        assets_dir = d / "assets"
+        if assets_dir.exists():
+            pattern = "*.js" if asset_path.endswith(".js") else "*.css" if asset_path.endswith(".css") else None
+            if pattern:
+                matches = list(assets_dir.glob(pattern))
+                if matches:
+                    media_type = "application/javascript" if asset_path.endswith(".js") else "text/css" if asset_path.endswith(".css") else None
+                    return FileResponse(matches[0], media_type=media_type)
     raise HTTPException(status_code=404, detail="Asset not found")
+
 
 
 
