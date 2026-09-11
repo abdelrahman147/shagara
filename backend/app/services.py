@@ -1,7 +1,4 @@
-"""Small deterministic retrieval service used by the local demo API.
-
-It intentionally has no model download or external service requirement. If Ollama is
-available, callers can opt into generation; retrieval and safety remain local.
+"""Small deterministic retrieval service with Gemini generation used by Shagara API.
 """
 from __future__ import annotations
 
@@ -14,10 +11,15 @@ from pathlib import Path
 from typing import Any
 
 import httpx
-
+from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(ROOT / ".env", override=True)
+load_dotenv(ROOT / "backend" / ".env", override=True)
+load_dotenv(override=True)
+
 DATA_DIR = ROOT / "rag_demo_data"
+UPLOAD_DIR = Path(os.getenv("UPLOAD_DIR", "/tmp/shagara_uploads" if os.getenv("VERCEL") else str(DATA_DIR)))
 VECTOR_DIR = ROOT / "backend" / "data" / "vector_store"
 INDEX_PATH = VECTOR_DIR / "index.json"
 ABSTAIN = "I couldn't find this information in the available documents."
@@ -118,21 +120,38 @@ class Retriever:
     async def generate(self, question: str, context: str) -> str | None:
         gemini_key = os.getenv("GEMINI_API_KEY")
         if gemini_key:
-            prompt = f"Answer only from this context. Be concise and cite the relevant source marker.\nCONTEXT:\n{context}\nQUESTION: {question}"
-            url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
-            try:
-                async with httpx.AsyncClient(timeout=30) as client:
-                    response = await client.post(url, params={"key": gemini_key}, json={"contents": [{"parts": [{"text": prompt}]}]})
-                    response.raise_for_status()
-                    candidates = response.json().get("candidates", [])
-                    return candidates[0]["content"]["parts"][0]["text"].strip() if candidates else None
-            except (httpx.HTTPError, ValueError, KeyError, IndexError):
-                pass
+            prompt = (
+                "You are Shagara, an expert botanical and rooftop gardening assistant for Cairo, Egypt.\n"
+                "Answer the user's question clearly, practically, and conversationally based ONLY on the provided context passages.\n"
+                "Always cite the source markers (e.g. [S1], [S2]) directly in your answer when making recommendations.\n"
+                "Keep your answer focused and helpful for urban rooftop growers.\n\n"
+                f"CONTEXT PASSAGES:\n{context}\n\n"
+                f"USER QUESTION: {question}"
+            )
+            models_to_try = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-flash-latest"]
+            for model_name in models_to_try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
+                try:
+                    async with httpx.AsyncClient(timeout=30.0) as client:
+                        response = await client.post(
+                            url,
+                            params={"key": gemini_key},
+                            json={"contents": [{"parts": [{"text": prompt}]}]}
+                        )
+                        if response.status_code == 200:
+                            candidates = response.json().get("candidates", [])
+                            if candidates and "content" in candidates[0]:
+                                text = candidates[0]["content"]["parts"][0]["text"].strip()
+                                if text:
+                                    return text
+                except Exception as err:
+                    continue
+
         url = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434") + "/api/generate"
         model = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
         prompt = f"Answer only from this context and be concise.\nCONTEXT:\n{context}\nQUESTION: {question}"
         try:
-            async with httpx.AsyncClient(timeout=20) as client:
+            async with httpx.AsyncClient(timeout=20.0) as client:
                 response = await client.post(url, json={"model": model, "prompt": prompt, "stream": False})
                 response.raise_for_status()
                 value = response.json().get("response", "").strip()
@@ -142,10 +161,13 @@ class Retriever:
 
 
 def persist_index(passages: list[Passage]) -> None:
-    VECTOR_DIR.mkdir(parents=True, exist_ok=True)
     payload = [{"document": p.document, "tenant": p.tenant, "access": p.access, "text": p.text, "section": p.section, "page": p.page,
                 "id": hashlib.sha1(f"{p.document}:{p.section}:{p.text}".encode()).hexdigest()[:12]} for p in passages]
-    INDEX_PATH.write_text(json.dumps({"version": 1, "embedding": "deterministic-lexical-v1", "chunk_size": 480, "overlap": 60, "passages": payload}, ensure_ascii=False, indent=2), encoding="utf-8")
+    try:
+        VECTOR_DIR.mkdir(parents=True, exist_ok=True)
+        INDEX_PATH.write_text(json.dumps({"version": 1, "embedding": "deterministic-lexical-v1", "chunk_size": 480, "overlap": 60, "passages": payload}, ensure_ascii=False, indent=2), encoding="utf-8")
+    except OSError:
+        pass
 
 retriever = Retriever()
 
@@ -170,7 +192,7 @@ async def query(question: str, tenant: str = "shagara", access: list[str] = ["al
     if query_type == "analytical":
         return {"answer": "This looks like a question about structured data rather than documents. Routing to the analytics/SQL path.", "query_type": query_type, "flags": ["routed_to_sql"], "abstained": False}
     if query_type == "chitchat":
-        return {"answer": "Hi — I can answer questions from your indexed documents.", "query_type": query_type}
+        return {"answer": "Hi! I am Shagara, your Cairo rooftop gardening assistant. Ask me about watering schedules, heat protection, pest management, or harvesting.", "query_type": query_type}
     rows = retriever.search(question, tenant, access)
     rows = [(p, s) for p, s in rows if "ignore all previous instructions" not in p.text.lower()]
     flags = []
@@ -180,12 +202,12 @@ async def query(question: str, tenant: str = "shagara", access: list[str] = ["al
     confidence = rows[0][1] if rows else 0
     abstained = confidence < 0.12
     answer = ABSTAIN if abstained else Retriever.answer(question, rows)
+    sources = [{"marker": f"S{i}", "document": p.document, "page": p.page, "section": p.section, "score": round(s, 3), "excerpt": p.text[:220]} for i, (p, s) in enumerate(rows, 1)]
+
     if (use_ollama or os.getenv("GEMINI_API_KEY")) and not abstained:
-        generated = await retriever.generate(question, "\n".join(p.text for p, _ in rows))
+        formatted_context = "\n\n".join(f"[{s['marker']} - {p.document} (Page {p.page}, {p.section})]:\n{p.text}" for s, (p, _) in zip(sources, rows))
+        generated = await retriever.generate(question, formatted_context)
         if generated:
             answer = generated
-    sources = [{"marker": f"S{i}", "document": p.document, "page": p.page, "section": p.section, "score": round(s, 3), "excerpt": p.text[:220]} for i, (p, s) in enumerate(rows, 1)]
+
     return {"answer": answer, "sources": sources, "query_type": query_type, "confidence": round(confidence, 3), "grounded": True, "abstained": abstained, "flags": flags}
-
-
-

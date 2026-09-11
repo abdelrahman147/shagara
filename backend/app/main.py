@@ -6,7 +6,7 @@ import shutil
 import re
 
 from .schemas import QueryRequest, QueryResponse
-from .services import query, DATA_DIR, retriever, persist_index, Passage, load_persisted_index
+from .services import query, DATA_DIR, UPLOAD_DIR, retriever, persist_index, Passage, load_persisted_index
 from .core.config import API_CORS_ORIGINS
 
 @asynccontextmanager
@@ -35,7 +35,8 @@ async def upload_document(file: UploadFile = File(...)) -> dict:
     suffix = Path(name).suffix.lower()
     if suffix not in {".md", ".txt", ".pdf"}:
         raise HTTPException(status_code=415, detail="Upload a .md, .txt, or .pdf file")
-    target = DATA_DIR / name
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+    target = UPLOAD_DIR / name
     raw = await file.read()
     import hashlib
     checksum = hashlib.sha256(raw).hexdigest()
